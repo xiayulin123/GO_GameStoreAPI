@@ -2,7 +2,7 @@ package model
 
 import (
 	"github.com/jinzhu/gorm"
-	"github.com/xiayulin123/Go-bookstore/pkg/config"
+	"github.com/xiayulin123/GO_GameStoreAPI/pkg/config"
 )
 
 var db *gorm.DB
