@@ -9,9 +9,9 @@ var db *gorm.DB
 
 type Toys struct {
 	gorm.Model
-	Name        string  `gorm:"column:name" json:"name"`
-	Price       float32 `gorm:"column:price" json:"price"`
-	Description string  `gorm:"column:description" json:"description"`
+	Name        string `gorm:"column:name" json:"name"`
+	Price       string `gorm:"column:price" json:"price"`
+	Description string `gorm:"column:description" json:"description"`
 }
 
 func init() {
@@ -31,13 +31,10 @@ func GetToys() []Toys {
 	return Toy
 }
 
-func GetToyById(Id int64) (*Toys, error) {
+func GetToyById(Id int64) (*Toys, *gorm.DB) {
 	var Toy Toys
-	result := db.Where("ID=?", Id).Find(&Toy)
-	if result.Error != nil {
-		return nil, result.Error
-	}
-	return &Toy, nil
+	db := db.Where("ID=?", Id).Find(&Toy)
+	return &Toy, db
 }
 func DeleteToy(Id int64) Toys {
 	var Toy Toys
